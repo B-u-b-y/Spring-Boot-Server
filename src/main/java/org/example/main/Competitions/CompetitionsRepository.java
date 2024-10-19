@@ -9,8 +9,8 @@ import java.util.List;
 
 public interface CompetitionsRepository extends JpaRepository<Competitions, Long> {
 
-    @Query("SELECT c.competition_code FROM Competitions c WHERE c.country_name = :country_name")
-    List<String> findbyCountryName(@Param("country_name") String country_name);
+    @Query("SELECT c FROM Competitions c WHERE c.country_name = :country_name")
+    List<Competitions> findbyCountryName(@Param("country_name") String country_name);
 
     @Query("SELECT DISTINCT c.country_name FROM Competitions c")
     List<String> findCountryNames();
