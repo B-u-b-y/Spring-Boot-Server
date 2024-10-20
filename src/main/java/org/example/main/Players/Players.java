@@ -1,23 +1,25 @@
 package org.example.main.Players;
-import jakarta.persistence.*;
 
+import jakarta.persistence.*;
+import java.text.SimpleDateFormat;
 import java.util.Date;
 
 @Entity
 @Table(name = "players")
 public class Players {
 
-    @Column(nullable = false)
-    private Integer player_id;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long player_id;
 
     @Column(nullable = false)
     private String name;
 
     @Column(nullable = false)
-    private int last_season;
+    private Integer last_season;
 
     @Column(nullable = false)
-    private int current_club_id;
+    private Integer current_club_id;
 
     @Column(nullable = false)
     private String player_code;
@@ -28,13 +30,11 @@ public class Players {
     @Column(nullable = false)
     private String city_of_birth;
 
-    @Column(nullable = false)
     private String country_of_citizenship;
 
-    @Column(nullable = false)
+    @Temporal(TemporalType.DATE)
     private Date date_of_birth;
 
-    @Column(nullable = false)
     private String sub_position;
 
     @Column(nullable = false)
@@ -43,23 +43,21 @@ public class Players {
     @Column(nullable = false)
     private String foot;
 
-    @Column(nullable = false)
-    private Double height_in_cm;
-
-    @Column
-    private Double market_value_in_euro;
-
-    @Column
-    private Integer highest_market_value_in_eur;
+    private Float height_in_cm;
 
     @Column(nullable = false)
-    private String contract_expiration_date;
+    private String market_value_in_eur;
+
+    @Column(nullable = false)
+    private String highest_market_value_in_eur;
+
+    private Date contract_expiration_date;
 
     @Column(nullable = false)
     private String agent_name;
 
-    @Column
-    private String img_url;
+    @Column(nullable = false)
+    private String image_url;
 
     @Column(nullable = false)
     private String url;
@@ -70,19 +68,14 @@ public class Players {
     @Column(nullable = false)
     private String current_club_name;
 
-    @Column(nullable = false)
-    private double age;
+    private Float age;
 
-    @Column
-    private String image_url;
-    @Id
-    private Long id;
-
-    public Integer getPlayer_id() {
+    // Getters and Setters
+    public Long getPlayer_id() {
         return player_id;
     }
 
-    public void setPlayer_id(Integer player_id) {
+    public void setPlayer_id(Long player_id) {
         this.player_id = player_id;
     }
 
@@ -94,19 +87,19 @@ public class Players {
         this.name = name;
     }
 
-    public int getLast_season() {
+    public Integer getLast_season() {
         return last_season;
     }
 
-    public void setLast_season(int last_season) {
+    public void setLast_season(Integer last_season) {
         this.last_season = last_season;
     }
 
-    public int getCurrent_club_id() {
+    public Integer getCurrent_club_id() {
         return current_club_id;
     }
 
-    public void setCurrent_club_id(int current_club_id) {
+    public void setCurrent_club_id(Integer current_club_id) {
         this.current_club_id = current_club_id;
     }
 
@@ -174,35 +167,35 @@ public class Players {
         this.foot = foot;
     }
 
-    public Double getHeight_in_cm() {
+    public Float getHeight_in_cm() {
         return height_in_cm;
     }
 
-    public void setHeight_in_cm(double height_in_cm) {
+    public void setHeight_in_cm(Float height_in_cm) {
         this.height_in_cm = height_in_cm;
     }
 
-    public Double getMarket_value_in_euro() {
-        return market_value_in_euro;
+    public String getMarket_value_in_eur() {
+        return market_value_in_eur;
     }
 
-    public void setMarket_value_in_euro(double market_value_in_euro) {
-        this.market_value_in_euro = market_value_in_euro;
+    public void setMarket_value_in_eur(String market_value_in_eur) {
+        this.market_value_in_eur = market_value_in_eur;
     }
 
-    public Integer getHighest_market_value_in_eur() {
+    public String getHighest_market_value_in_eur() {
         return highest_market_value_in_eur;
     }
 
-    public void setHighest_market_value_in_eur(int highest_market_value_in_eur) {
+    public void setHighest_market_value_in_eur(String highest_market_value_in_eur) {
         this.highest_market_value_in_eur = highest_market_value_in_eur;
     }
 
-    public String getContract_expiration_date() {
+    public Date getContract_expiration_date() {
         return contract_expiration_date;
     }
 
-    public void setContract_expiration_date(String contract_expiration_date) {
+    public void setContract_expiration_date(Date contract_expiration_date) {
         this.contract_expiration_date = contract_expiration_date;
     }
 
@@ -218,8 +211,8 @@ public class Players {
         return image_url;
     }
 
-    public void setImage_url(String img_url) {
-        this.image_url = img_url;
+    public void setImage_url(String image_url) {
+        this.image_url = image_url;
     }
 
     public String getUrl() {
@@ -246,19 +239,17 @@ public class Players {
         this.current_club_name = current_club_name;
     }
 
-    public double getAge() {
+    public Float getAge() {
         return age;
     }
 
-    public void setAge(double age) {
+    public void setAge(Float age) {
         this.age = age;
     }
 
-    public Players() {
-    }
+    public Players(){}
 
-    public Players(Integer player_id, String name, int last_season, int current_club_id, String player_code, String country_of_birth, String city_of_birth, String country_of_citizenship, Date date_of_birth, String sub_position, String position, String foot, Double height_in_cm, Double market_value_in_euro, Integer highest_market_value_in_eur, String contract_expiration_date, String agent_name, String img_url, String url, String current_club_domestic_competition_id, String current_club_name, double age, String image_url, Long id) {
-        this.player_id = player_id;
+    public Players(String name, Integer last_season, Integer current_club_id, String player_code, String country_of_birth, String city_of_birth, String country_of_citizenship, Date date_of_birth, String sub_position, String position, String foot, Float height_in_cm, String market_value_in_eur, String highest_market_value_in_eur, Date contract_expiration_date, String agent_name, String image_url, String url, String current_club_domestic_competition_id, String current_club_name, Float age) {
         this.name = name;
         this.last_season = last_season;
         this.current_club_id = current_club_id;
@@ -271,30 +262,20 @@ public class Players {
         this.position = position;
         this.foot = foot;
         this.height_in_cm = height_in_cm;
-        this.market_value_in_euro = market_value_in_euro;
+        this.market_value_in_eur = market_value_in_eur;
         this.highest_market_value_in_eur = highest_market_value_in_eur;
         this.contract_expiration_date = contract_expiration_date;
         this.agent_name = agent_name;
-        this.img_url = img_url;
+        this.image_url = image_url;
         this.url = url;
         this.current_club_domestic_competition_id = current_club_domestic_competition_id;
         this.current_club_name = current_club_name;
         this.age = age;
-        this.image_url = image_url;
-        this.id = id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
-    }
-
-    public Long getId() {
-        return id;
     }
 
     @Override
-    public String toString() {
-        return "Players{" +
+    public String toString(){
+        return "Player{" +
                 "player_id=" + player_id +
                 ", name='" + name + '\'' +
                 ", last_season=" + last_season +
@@ -308,18 +289,15 @@ public class Players {
                 ", position='" + position + '\'' +
                 ", foot='" + foot + '\'' +
                 ", height_in_cm=" + height_in_cm +
-                ", market_value_in_euro=" + market_value_in_euro +
-                ", highest_market_value_in_eur=" + highest_market_value_in_eur +
-                ", contract_expiration_date='" + contract_expiration_date + '\'' +
+                ", market_value_in_eur='" + market_value_in_eur + '\'' +
+                ", highest_market_value_in_eur='" + highest_market_value_in_eur + '\'' +
+                ", contract_expiration_date=" + contract_expiration_date +
                 ", agent_name='" + agent_name + '\'' +
-                ", img_url='" + img_url + '\'' +
+                ", image_url='" + image_url + '\'' +
                 ", url='" + url + '\'' +
                 ", current_club_domestic_competition_id='" + current_club_domestic_competition_id + '\'' +
                 ", current_club_name='" + current_club_name + '\'' +
                 ", age=" + age +
-                ", image_url='" + image_url + '\'' +
-                ", id=" + id +
                 '}';
     }
-
 }

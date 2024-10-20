@@ -1,9 +1,8 @@
 package org.example.main.Players;
-import org.springframework.http.HttpStatus;
+
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
@@ -24,5 +23,7 @@ public class PlayersController {
     public ResponseEntity<?> getPlayerById(@PathVariable int player_id) {
         return ResponseEntity.ok(playersService.playerbyId(player_id));
     }
+
+
 
 }
