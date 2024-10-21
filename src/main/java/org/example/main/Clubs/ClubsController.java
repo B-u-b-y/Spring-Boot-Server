@@ -18,4 +18,9 @@ public class ClubsController {
 
         return ResponseEntity.ok(clubsService.clubbyCompetition(competition));
     }
+
+    @GetMapping("/clubs/{club_id}")
+    public ResponseEntity<?> getClubById(@PathVariable int club_id) {
+        return ResponseEntity.ok(clubsService.clubbyId(club_id));
+    }
 }
