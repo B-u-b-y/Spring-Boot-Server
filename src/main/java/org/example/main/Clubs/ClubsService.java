@@ -17,5 +17,4 @@ public class ClubsService {
     public Clubs clubbyId(int club_id) {
         return clubsRepository.findbyId(club_id);
     }
-
 }
