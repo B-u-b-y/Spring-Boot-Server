@@ -23,7 +23,4 @@ public class PlayersController {
     public ResponseEntity<?> getPlayerById(@PathVariable int player_id) {
         return ResponseEntity.ok(playersService.playerbyId(player_id));
     }
-
-
-
 }
