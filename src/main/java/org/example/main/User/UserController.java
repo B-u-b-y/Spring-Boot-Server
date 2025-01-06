@@ -1,16 +1,31 @@
 package org.example.main.User;
 
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
+@Tag(name = "User", description = "API for user authentication and registration")
 public class UserController {
 
     @Autowired
     private UserService userService;
 
+    /**
+     * Authenticate the user based on login credentials
+     * @param loginRequest The login request containing username and password
+     * @return Login response with success message
+     */
+    @Operation(
+            summary = "User Login",
+            description = "Authenticate the user by checking the provided credentials",
+            requestBody = @io.swagger.v3.oas.annotations.parameters.RequestBody(
+                    description = "Login credentials",
+                    required = true
+            ))
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody LoginRequest loginRequest) {
         System.out.println("Login request received for user: " + loginRequest.getUsername());
@@ -23,6 +38,18 @@ public class UserController {
         }
     }
 
+    /**
+     * Register a new user
+     * @param loginRequest The registration request containing username and password
+     * @return Registration response with success message
+     */
+    @Operation(
+            summary = "User Registration",
+            description = "Register a new user by providing username and password",
+            requestBody = @io.swagger.v3.oas.annotations.parameters.RequestBody(
+                    description = "Registration credentials",
+                    required = true
+            ))
     @PostMapping("/register")
     public ResponseEntity<?> register(@RequestBody LoginRequest loginRequest) {
         System.out.println("Register request received for user: " + loginRequest.getUsername());
