@@ -1,7 +1,6 @@
 package org.example.main.Clubs;
 
 import io.swagger.v3.oas.annotations.Operation;
-import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -22,12 +21,8 @@ public class ClubsController {
      * @param competition The competition name to fetch clubs for
      * @return List of clubs associated with the specified competition
      */
-    @Operation(
-            summary = "Get clubs by competition",
-            description = "Retrieve all clubs participating in a specific competition",
-            parameters = {
-                    @Parameter(name = "competition", description = "Name of the competition", required = true)
-            })
+    @Operation(summary = "Get clubs by competition", description = "Retrieve all clubs participating in a specific competition")
+
     @GetMapping("/{competition}/clubs")
     public ResponseEntity<?> getClubsByCountry(@PathVariable String competition) {
         return ResponseEntity.ok(clubsService.clubbyCompetition(competition));
@@ -38,12 +33,8 @@ public class ClubsController {
      * @param club_id The unique identifier of the club
      * @return Details of the specified club
      */
-    @Operation(
-            summary = "Get club by ID",
-            description = "Retrieve detailed information for a club by its unique ID",
-            parameters = {
-                    @Parameter(name = "club_id", description = "Unique ID of the club", required = true)
-            })
+    @Operation(summary = "Get club by ID", description = "Retrieve detailed information for a club by its unique ID")
+
     @GetMapping("/clubs/{club_id}")
     public ResponseEntity<?> getClubById(@PathVariable int club_id) {
         return ResponseEntity.ok(clubsService.clubbyId(club_id));

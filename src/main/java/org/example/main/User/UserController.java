@@ -19,16 +19,9 @@ public class UserController {
      * @param loginRequest The login request containing username and password
      * @return Login response with success message
      */
-    @Operation(
-            summary = "User Login",
-            description = "Authenticate the user by checking the provided credentials",
-            requestBody = @io.swagger.v3.oas.annotations.parameters.RequestBody(
-                    description = "Login credentials",
-                    required = true
-            ))
+    @Operation(summary = "User Login", description = "Authenticate the user by checking the provided credentials")
     @PostMapping("/login")
     public ResponseEntity<?> login(@RequestBody LoginRequest loginRequest) {
-        System.out.println("Login request received for user: " + loginRequest.getUsername());
         boolean isAuthenticated = userService.authenticate(loginRequest.getUsername(), loginRequest.getPassword());
 
         if (isAuthenticated) {
@@ -43,16 +36,9 @@ public class UserController {
      * @param loginRequest The registration request containing username and password
      * @return Registration response with success message
      */
-    @Operation(
-            summary = "User Registration",
-            description = "Register a new user by providing username and password",
-            requestBody = @io.swagger.v3.oas.annotations.parameters.RequestBody(
-                    description = "Registration credentials",
-                    required = true
-            ))
+    @Operation(summary = "User Registration", description = "Register a new user by providing username and password")
     @PostMapping("/register")
     public ResponseEntity<?> register(@RequestBody LoginRequest loginRequest) {
-        System.out.println("Register request received for user: " + loginRequest.getUsername());
         boolean isRegistered = userService.register(loginRequest.getUsername(), loginRequest.getPassword());
 
         if (isRegistered) {
